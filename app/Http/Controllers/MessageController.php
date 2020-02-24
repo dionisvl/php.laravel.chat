@@ -14,7 +14,12 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::take(500)->get();
+        $return = [
+            'users' => $messages
+        ];
+
+        return response()->json([$return]);
     }
 
     /**
@@ -35,7 +40,18 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message;
+        $message->user_name = $request->user_name;
+        $message->msg = $request->msg;
+
+        $message->save();
+
+
+        $messages = Message::take(500)->get();
+        $return = [
+            'users' => $messages
+        ];
+        return response()->json([$return]);
     }
 
     /**

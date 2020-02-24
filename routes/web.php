@@ -20,5 +20,7 @@ Route::get('/', function () {
 //список всех сообщений
 Route::get('/messages', 'MessageController@index');
 
+
+
 //store Новое сообщение в БД
 Route::post('/messages', 'MessageController@store');
