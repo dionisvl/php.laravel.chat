@@ -16,11 +16,12 @@ Route::get('/', function () {
 });
 
 
+//окно чата
+Route::get('/chat', function () {
+    return view('chat');
+});
 
 //список всех сообщений
 Route::get('/messages', 'MessageController@index');
-
-
-
 //store Новое сообщение в БД
 Route::post('/messages', 'MessageController@store');
