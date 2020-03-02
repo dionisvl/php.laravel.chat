@@ -4,8 +4,8 @@
 
 - git clone THIS_REPO
 - cp .env.example .env
-- php artisan key:generate
 - composer install
+- php artisan key:generate
 - create empty DB and config it into .env
 - php artisan migrate
 - optional:

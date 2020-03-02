@@ -10,11 +10,13 @@ class MessageController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $messages = Message::take(500)->get();
+        $countToReturnBack = empty($request->countToReturnBack) ? 6 : (int) $request->countToReturnBack;
+        $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get();
         $return = [
             'users' => $messages
         ];
@@ -46,8 +48,8 @@ class MessageController extends Controller
 
         $message->save();
 
-
-        $messages = Message::take(500)->get();
+        $countToReturnBack = empty($request->countToReturnBack) ? 6 : (int) $request->countToReturnBack;
+        $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get();
         $return = [
             'users' => $messages
         ];
