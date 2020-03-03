@@ -16,7 +16,7 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $countToReturnBack = empty($request->countToReturnBack) ? 6 : (int) $request->countToReturnBack;
-        $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get();
+        $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get()->sortBy('created_at');
         $return = [
             'users' => $messages
         ];
@@ -49,7 +49,7 @@ class MessageController extends Controller
         $message->save();
 
         $countToReturnBack = empty($request->countToReturnBack) ? 6 : (int) $request->countToReturnBack;
-        $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get();
+        $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get()->sortBy('created_at');
         $return = [
             'users' => $messages
         ];
