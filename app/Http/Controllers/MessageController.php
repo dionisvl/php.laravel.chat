@@ -17,6 +17,10 @@ class MessageController extends Controller
     {
         $countToReturnBack = empty($request->countToReturnBack) ? 6 : (int) $request->countToReturnBack;
         $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get()->sortBy('created_at');
+
+        //remove keys after sortBy
+        $messages = $messages->unique('id')->values();
+
         $return = [
             'users' => $messages
         ];
@@ -50,6 +54,10 @@ class MessageController extends Controller
 
         $countToReturnBack = empty($request->countToReturnBack) ? 6 : (int) $request->countToReturnBack;
         $messages = Message::take($countToReturnBack)->orderBy('created_at','DESC')->get()->sortBy('created_at');
+
+        //remove keys after sortBy
+        $messages = $messages->unique('id')->values();
+
         $return = [
             'users' => $messages
         ];
